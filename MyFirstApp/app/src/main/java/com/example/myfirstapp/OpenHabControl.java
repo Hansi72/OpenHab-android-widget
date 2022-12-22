@@ -1,8 +1,11 @@
 package com.example.myfirstapp;
 
+import android.util.Log;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
 import com.android.volley.Network;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -33,22 +36,22 @@ public OpenHabControl(File cacheDir){
     reqQue = new RequestQueue(cache, network);
     reqQue.start();
 
-
     //todo: legg disse variablene i SharedPreferences
-    OHabIP = "10.0.1.120";
+    OHabIP = "10.0.0.172";
     OHabPort = "8080";
 }
 
 //Openhab tar i mot tall i strings eller kommandoer. Eks: ON/OFF, 0-100(Dimming)m.m. (sjekk REST API)
 public void itemControl(String itemName, String body){
     String url = "http://" + OHabIP + ":" + OHabPort + "/rest/items/" + itemName;
-    //String url = "http://10.0.1.120:8080/rest/items/Stue"; //test url todo: fjern
+    //String url = "http://10.0.0.172:8080/rest/items/Soverom"; //test url todo: fjern
     stdRequest(url, body);
 }
 
 
     //StringRequest med headers som gjør at openhab er glad.
     void stdRequest(String url, String body){
+        Log.w("hansi", "stdRequest start, url:"+ url + "    body: " + body );
         StringRequest jsonRequest = new StringRequest(1,url, new Response.Listener<String>()
         {
             @Override

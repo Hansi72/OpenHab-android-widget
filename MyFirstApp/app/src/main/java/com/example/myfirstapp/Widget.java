@@ -87,7 +87,7 @@ public class Widget extends AppWidgetProvider {
         intent.putExtra("itemName", itemName);
         intent.putExtra("body", body);
         Log.i("ACTION_OHAB.extrasTEST", intent.getStringExtra("itemName") + " + " + intent.getStringExtra("body"));
-        return PendingIntent.getBroadcast(context, reqCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getBroadcast(context, reqCode, intent, PendingIntent.FLAG_IMMUTABLE);
 }
 
 
